@@ -8,36 +8,42 @@ import java.util.regex.Pattern;
 
 public class ClientService {
 
-    private static String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-    private static String FIRST_LAST_NAME_PATTERN = "^[a-zA-Z]+[-a-zA-Z]{3,}$";
+    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private static final String FIRST_LAST_NAME_PATTERN = "^[A-Z][a-z]{2,}(-[A-Z][a-z]{2,})?$";
 
     public Client registerNewClient() {
         Client client = null;
+        boolean isValidInput = false;
 
-        System.out.println("Please provide client details.");
-        System.out.print("Email: ");
-        String email = Main.SCANNER.nextLine();
-        System.out.print("First name: ");
-        String firstName = Main.SCANNER.nextLine();
-        System.out.print("Last name: ");
-        String lastName = Main.SCANNER.nextLine();
+        while (!isValidInput) {
+            System.out.println("Please provide client details.");
+            System.out.print("Email: ");
+            String email = Main.SCANNER.nextLine();
+            System.out.print("First name: ");
+            String firstName = Main.SCANNER.nextLine();
+            System.out.print("Last name: ");
+            String lastName = Main.SCANNER.nextLine();
 
-        if(!isEmailValid(email)) {
-            System.out.println("Provided email is invalid.");
-        }
-        if(!isFirstNameValid(firstName)){
-            System.out.println("Provided name is invalid.");
-        }
-        if(!isLastNameValid(lastName)){
-            System.out.println("Provided lastname is invalid.");
-        }
-        if(isEmailValid(email) && isFirstNameValid(firstName) && isLastNameValid(lastName)) {
-            client = buildClient(email, firstName, lastName);
-            System.out.println("New client: " + client.getFirstName() + " "
-                    + client.getLastName() + " ("
-                    + client.getEmail() + ")");
-        } else {
-            System.out.println("Try again.");
+            if (!isEmailValid(email)) {
+                System.out.println("Provided email is invalid.");
+            }
+            if (!isFirstNameValid(firstName)) {
+                System.out.println("Provided name is invalid."
+                        + "The name must start with a capital letter and contain at least three characters");
+            }
+            if (!isLastNameValid(lastName)) {
+                System.out.println("Provided lastname is invalid."
+                        + "The lastname must start with a capital letter and contain at least three characters");
+            }
+            if (isEmailValid(email) && isFirstNameValid(firstName) && isLastNameValid(lastName)) {
+                client = buildClient(email, firstName, lastName);
+                System.out.println("New client: " + client.getFirstName() + " "
+                        + client.getLastName() + " ("
+                        + client.getEmail() + ")");
+                isValidInput = true;
+            } else {
+                System.out.println("Try again.");
+            }
         }
         return client;
     }
