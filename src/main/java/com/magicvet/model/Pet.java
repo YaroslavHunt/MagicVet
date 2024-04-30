@@ -2,7 +2,7 @@ package com.magicvet.model;
 
 import java.util.Objects;
 
-public class Pet {
+public abstract class Pet {
 
     private String type;
     private String sex;
