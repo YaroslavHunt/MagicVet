@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Sandbox {
     public static void main(String[] args) {
         Dog[] dogs = {
-                new Dog(Dog.S),
+                new Dog(),
                 new Dog(Dog.M),
                 new Dog(Dog.S),
                 new Dog(Dog.XS),
