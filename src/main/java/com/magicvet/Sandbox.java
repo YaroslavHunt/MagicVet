@@ -1,6 +1,7 @@
 package com.magicvet;
 
 import com.magicvet.model.Dog;
+import com.magicvet.model.Pet;
 
 import java.util.Arrays;
 import java.util.Comparator;

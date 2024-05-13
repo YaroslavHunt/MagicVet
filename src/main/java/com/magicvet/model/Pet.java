@@ -9,6 +9,32 @@ public abstract class Pet {
     private String age;
     private String name;
     private String ownerName;
+    private HealthState healthState;
+
+    public enum HealthState {
+        GOOD_HEALTH("Добре здоров'я", 1),
+        INJURY("Травма",2),
+        DIGESTIVE_UPSET("Розлад травлення",3),
+        RESPIRATORY_INFECTION("Респіраторна інфекція",4),
+        SKIN_IRRITATION("Подразнення шкіри",5),
+        CHRONIC_CONDITION("Хронічний стан", 6),
+        EMERGENCY("Надзвичайна ситуація",7);
+
+        private final String ukrTranslation;
+        private final int value;
+
+        HealthState(String ukrTranslation, int value) {
+            this.ukrTranslation = ukrTranslation;
+            this.value = value;
+        }
+
+        public String getUkrTranslation() {
+            return ukrTranslation;
+        }
+        public int getValue() {
+            return value;
+        }
+    }
 
 
     @Override
@@ -77,5 +103,13 @@ public abstract class Pet {
 
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
+    }
+
+    public HealthState getHealthState() {
+        return healthState;
+    }
+
+    public void setHealthState(HealthState healthState) {
+        this.healthState = healthState;
     }
 }
