@@ -1,9 +1,11 @@
 package com.magicvet.model;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Dog extends Pet {
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
     private Size size;
     public Dog() {}
     public Dog(Size size) {
@@ -46,6 +48,7 @@ public class Dog extends Pet {
                 + ", name = " + getName()
                 + ", size = " + getSize()
                 + ", ownerName = " + getOwnerName()
+                + ", registrationDate = " + getRegistrationDate().format(FORMATTER)
                 + "\n\t}";
     }
 
