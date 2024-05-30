@@ -41,7 +41,6 @@ public abstract class Pet {
         }
     }
 
-
     @Override
     public String toString() {
         return "Pet {"
@@ -50,6 +49,7 @@ public abstract class Pet {
                 + ", age = " + age
                 + ", name = " + name
                 + ", ownerName = " + ownerName
+                + ", health state = " + healthState.getUkrTranslation()
                 + ", registrationDate = " + registrationDate.format(FORMATTER)
                 + "\n\t}";
     }
@@ -63,12 +63,13 @@ public abstract class Pet {
                 && Objects.equals(sex, pet.sex)
                 && Objects.equals(age, pet.age)
                 && Objects.equals(name, pet.name)
-                && Objects.equals(ownerName, pet.ownerName);
+                && Objects.equals(ownerName, pet.ownerName)
+                && Objects.equals(healthState, pet.healthState);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, sex, age, name, ownerName);
+        return Objects.hash(type, sex, age, name, ownerName, healthState);
     }
 
     public String getType() {
