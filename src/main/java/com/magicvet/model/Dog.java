@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class Dog extends Pet {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
     private Size size;
     public Dog() {}
     public Dog(Size size) {
@@ -32,6 +31,18 @@ public class Dog extends Pet {
 
         Size(int value) {
             this.value = value;
+        }
+
+        public static Size fromString(String value) {
+            for (Size size : values()) {
+                if (size.toString().equals(value)) {
+                    return size;
+                }
+            }
+
+            System.out.println("Unable to parse value '" + value + "'. Using default value: " + UNKNOWN);
+
+            return UNKNOWN;
         }
 
         public int getValue() {
