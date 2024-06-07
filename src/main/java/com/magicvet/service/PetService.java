@@ -2,6 +2,7 @@ package com.magicvet.service;
 
 import com.magicvet.Main;
 import com.magicvet.model.Cat;
+import com.magicvet.model.Client;
 import com.magicvet.model.Dog;
 import com.magicvet.model.Pet;
 
@@ -45,12 +46,31 @@ public class PetService {
                         "SKIN_IRRITATION, " +
                         "CHRONIC_CONDITION, " +
                         "EMERGENCY): ");
-        pet.setHealthState(Pet.HealthState.valueOf(Main.SCANNER.nextLine()));
+            Pet.HealthState healthState;
+            String healthStateInput = Main.SCANNER.nextLine();
+                try {
+                    healthState = Pet.HealthState.valueOf(healthStateInput);
+                } catch (IllegalArgumentException e) {
+                    healthState = Pet.HealthState.UNKNOWN;
+                    System.out.println("Unable to parse value '" + healthStateInput
+                            + "'. Using default value: " + Pet.HealthState.UNKNOWN);
+                }
+                pet.setHealthState(healthState);
+
 
         if (type.equals(DOG_TYPE)) {
             System.out.print("Size (XS / S / M / L / XL): ");
-            String size = Main.SCANNER.nextLine();
-            ((Dog) pet).setSize(Dog.Size.fromString(size));
+            Dog.Size size;
+            String sizeInput = Main.SCANNER.nextLine();
+            try {
+                size = Dog.Size.valueOf(sizeInput);
+            } catch (IllegalArgumentException e) {
+                size = Dog.Size.UNKNOWN;
+                System.out.println("Unable to parse value '" + sizeInput
+                        + "'. Using default value: " + Dog.Size.UNKNOWN);
+            }
+
+            ((Dog) pet).setSize(size);
         }
 
         return pet;

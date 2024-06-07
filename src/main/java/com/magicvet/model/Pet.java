@@ -24,7 +24,7 @@ public abstract class Pet {
                 + ", age = " + age
                 + ", name = " + name
                 + ", ownerName = " + ownerName
-                + ", health state = " + healthState.getUkrTranslation()
+                + ", health state = " + healthState
                 + ", registrationDate = " + registrationDate.format(FORMATTER)
                 + "\n\t}";
     }
@@ -91,34 +91,27 @@ public abstract class Pet {
         return healthState;
     }
 
-    public void setHealthState(HealthState healthState) {
-        this.healthState = healthState;
-    }
+    public void setHealthState(HealthState healthState) { this.healthState = healthState; }
 
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
     }
 
     public enum HealthState {
-        GOOD_HEALTH("Добре здоров'я", 1),
-        INJURY("Травма",2),
-        DIGESTIVE_UPSET("Розлад травлення",3),
-        RESPIRATORY_INFECTION("Респіраторна інфекція",4),
-        SKIN_IRRITATION("Подразнення шкіри",5),
-        CHRONIC_CONDITION("Хронічний стан", 6),
-        EMERGENCY("Надзвичайна ситуація",7);
-
-        private final String ukrTranslation;
+        GOOD_HEALTH( 1),
+        INJURY(2),
+        DIGESTIVE_UPSET(3),
+        RESPIRATORY_INFECTION(4),
+        SKIN_IRRITATION(5),
+        CHRONIC_CONDITION(6),
+        EMERGENCY(7),
+        UNKNOWN(0);
         private final int value;
 
-        HealthState(String ukrTranslation, int value) {
-            this.ukrTranslation = ukrTranslation;
+        HealthState(int value) {
             this.value = value;
         }
 
-        public String getUkrTranslation() {
-            return ukrTranslation;
-        }
         public int getValue() {
             return value;
         }
